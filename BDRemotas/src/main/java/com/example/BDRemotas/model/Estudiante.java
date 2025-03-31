@@ -8,14 +8,14 @@ public class Estudiante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
+    private long codigo;
 
     private String nombre;
 
     private String telefono;
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="idProfesor")
     private Profesor idProfesor;
 
     public Estudiante() {
@@ -28,11 +28,11 @@ public class Estudiante {
         this.idProfesor = idProfesor;
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
