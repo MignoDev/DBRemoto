@@ -1,28 +1,30 @@
 package com.example.BDRemotas.Controller;
 
+import com.example.BDRemotas.model.Estudiante;
 import com.example.BDRemotas.model.Profesor;
+import com.example.BDRemotas.service.EstudianteService;
 import com.example.BDRemotas.service.ProfesorService;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/api/profesor")
-public class ProfesorController {
+@RequestMapping("/api/estudiante")
+public class EstudianteController {
 
     @Autowired
-    public ProfesorService profesorService;
+    public EstudianteService estudianteService;
 
     @GetMapping("/listar")
     public ResponseEntity<?> listar()
     {
         try {
 
-            List<Profesor> response = profesorService.list();
+            List<Estudiante> response = estudianteService.list();
 
             if(response.isEmpty()){
                 return ResponseEntity.noContent().build();
@@ -40,7 +42,7 @@ public class ProfesorController {
     public ResponseEntity<?> ver(@PathVariable long id)
     {
         try {
-            Profesor response = profesorService.findById(id);
+            Estudiante response = estudianteService.findById(id);
             return ResponseEntity.ok(response);
 
         } catch (RuntimeException e)
@@ -54,7 +56,7 @@ public class ProfesorController {
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<?> guardar (@RequestBody Profesor profesor)
+    public ResponseEntity<?> guardar (@RequestBody Estudiante profesor)
     {
         try{
             return ResponseEntity.ok("Se ha guardado correctamente");
@@ -80,7 +82,7 @@ public class ProfesorController {
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<?> actualizar (@RequestBody Profesor profesor)
+    public ResponseEntity<?> actualizar (@RequestBody Estudiante profesor)
     {
         try {
 
