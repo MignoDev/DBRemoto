@@ -1,9 +1,7 @@
 package com.example.BDRemotas.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.aspectj.lang.annotation.RequiredTypes;
 
 @Entity
 public class Estudiante {
@@ -16,7 +14,18 @@ public class Estudiante {
 
     private String telefono;
 
+    @ManyToOne
+    @JoinColumn(name="id")
+    private Profesor idProfesor;
+
     public Estudiante() {
+    }
+
+    public Estudiante(int codigo, String nombre, String telefono, Profesor idProfesor) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.idProfesor = idProfesor;
     }
 
     public int getCodigo() {
@@ -41,6 +50,14 @@ public class Estudiante {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public Profesor getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(Profesor idProfesor) {
+        this.idProfesor = idProfesor;
     }
 
     @Override
