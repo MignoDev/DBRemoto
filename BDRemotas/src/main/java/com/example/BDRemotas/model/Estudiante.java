@@ -3,37 +3,43 @@ package com.example.BDRemotas.model;
 import jakarta.persistence.*;
 import org.aspectj.lang.annotation.RequiredTypes;
 
+import java.util.List;
+
 @Entity
 public class Estudiante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codigo;
+    private long id;
 
     private String nombre;
 
     private String telefono;
 
     @ManyToOne
-    @JoinColumn(name="idProfesor")
-    private Profesor idProfesor;
+    @JoinColumn(name="profesor")
+    private Profesor profesor;
+
+    @ManyToMany(mappedBy = "estudiantes")
+    private List<Clase> clases;
 
     public Estudiante() {
     }
 
-    public Estudiante(int codigo, String nombre, String telefono, Profesor idProfesor) {
-        this.codigo = codigo;
+    public Estudiante(long id, String nombre, String telefono, Profesor profesor, List<Clase> clases) {
+        this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
-        this.idProfesor = idProfesor;
+        this.profesor = profesor;
+        this.clases = clases;
     }
 
     public long getCodigo() {
-        return codigo;
+        return id;
     }
 
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setCodigo(long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -52,20 +58,30 @@ public class Estudiante {
         this.telefono = telefono;
     }
 
-    public Profesor getIdProfesor() {
-        return idProfesor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setIdProfesor(Profesor idProfesor) {
-        this.idProfesor = idProfesor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+
+    public List<Clase> getClases() {
+        return clases;
+    }
+
+    public void setClases(List<Clase> clases) {
+        this.clases = clases;
     }
 
     @Override
     public String toString() {
         return "Estudiante{" +
-                "codigo=" + codigo +
+                "codigo=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", telefono='" + telefono + '\'' +
+                ", profesor=" + profesor +
+                ", clases=" + clases +
                 '}';
     }
 }
