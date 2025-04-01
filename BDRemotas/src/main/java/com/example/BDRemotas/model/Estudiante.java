@@ -1,11 +1,15 @@
 package com.example.BDRemotas.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.aspectj.lang.annotation.RequiredTypes;
 
 import java.util.List;
 
-@Entity
+@Entity @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Estudiante {
 
     @Id
@@ -23,65 +27,4 @@ public class Estudiante {
     @ManyToMany(mappedBy = "estudiantes")
     private List<Clase> clases;
 
-    public Estudiante() {
-    }
-
-    public Estudiante(long id, String nombre, String telefono, Profesor profesor, List<Clase> clases) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.profesor = profesor;
-        this.clases = clases;
-    }
-
-    public long getCodigo() {
-        return id;
-    }
-
-    public void setCodigo(long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public Profesor getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
-    }
-
-    public List<Clase> getClases() {
-        return clases;
-    }
-
-    public void setClases(List<Clase> clases) {
-        this.clases = clases;
-    }
-
-    @Override
-    public String toString() {
-        return "Estudiante{" +
-                "codigo=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", profesor=" + profesor +
-                ", clases=" + clases +
-                '}';
-    }
 }

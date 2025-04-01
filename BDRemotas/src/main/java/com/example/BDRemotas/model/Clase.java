@@ -1,10 +1,15 @@
 package com.example.BDRemotas.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Clase {
 
     @Id
@@ -23,55 +28,4 @@ public class Clase {
         inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
     private List<Estudiante> estudiantes;
 
-    public Clase() {
-    }
-
-    public Clase(long id, String nombreClase, Profesor profesor, List<Estudiante> estudiantes) {
-        this.id = id;
-        this.nombreClase = nombreClase;
-        this.profesor = profesor;
-        this.estudiantes = estudiantes;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getNombreClase() {
-        return nombreClase;
-    }
-
-    public void setNombreClase(String nombreClase) {
-        this.nombreClase = nombreClase;
-    }
-
-    public Profesor getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
-    }
-
-    public List<Estudiante> getEstudiantes() {
-        return estudiantes;
-    }
-
-    public void setEstudiantes(List<Estudiante> estudiantes) {
-        this.estudiantes = estudiantes;
-    }
-
-    @Override
-    public String toString() {
-        return "Clase{" +
-                "id=" + id +
-                ", nombreClase='" + nombreClase + '\'' +
-                ", profesor=" + profesor +
-                ", estudiantes=" + estudiantes +
-                '}';
-    }
 }
