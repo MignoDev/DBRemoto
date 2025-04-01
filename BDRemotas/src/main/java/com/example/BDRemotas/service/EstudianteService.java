@@ -44,7 +44,7 @@ public class EstudianteService {
 
     public void update (Estudiante estudiante)
     {
-        if (!estudianteRepository.existsById(estudiante.getCodigo()))
+        if (!estudianteRepository.existsById(estudiante.getId()))
         {
             throw new RuntimeException("El registor no existe");
         }

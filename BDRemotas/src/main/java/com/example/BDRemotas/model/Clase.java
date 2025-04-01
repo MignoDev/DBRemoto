@@ -1,5 +1,6 @@
 package com.example.BDRemotas.model;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
